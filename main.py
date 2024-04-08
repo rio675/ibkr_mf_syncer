@@ -31,10 +31,10 @@ def main():
         page = context.new_page()
         # Handle dialog (popup)　表示されるダイアログを自動的に承認（OKボタンを押す）する。
         page.once("dialog", lambda dialog: dialog.accept())
-        # ---MoneyForward Me Login---
-        page = mfproc.login(page, MF_EMAIL, MF_PASS)
         # ---MoneyForward上で手動登録したIBKRのページに遷移---
         page.goto(MF_IB_INSTITUTION_URL)
+        # ---MoneyForward Me Login---
+        page = mfproc.login(page, MF_EMAIL, MF_PASS)
         page.wait_for_load_state('networkidle')
         # ---取得したIB FLEX REPORTをMoneyForward MEに反映する---
         mfproc.reflect_to_mf_cash_deposit(page, ib_cash_report)

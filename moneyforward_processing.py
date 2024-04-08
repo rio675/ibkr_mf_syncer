@@ -2,8 +2,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 
 def login(page, mf_id, mf_pass):
-    MF_EMAIL_SIGN_IN_URL="https://id.moneyforward.com/sign_in/email"
-    page.goto(MF_EMAIL_SIGN_IN_URL) 
     # Fill in the email field
     page.fill('#mfid_user\\[email\\]', mf_id)
     # Click the submit button
@@ -13,15 +11,6 @@ def login(page, mf_id, mf_pass):
     # Fill in the password field
     page.fill('#mfid_user\\[password\\]', mf_pass) 
     # Click the submit (sign in) button
-    page.click('#submitto')
-    # Wait for navigation (optional, depending on the page)
-    page.wait_for_load_state('networkidle')
-    # Go to the MoneyForward Sign In page
-    MF_SIGN_IN_URL="https://moneyforward.com/sign_in/"
-    page.goto(MF_SIGN_IN_URL)
-    # Wait for navigation (optional, depending on the page)
-    page.wait_for_load_state('networkidle')
-    # Click the submit (Use this account) button
     page.click('#submitto')
     # retuen the page instance
     return page
